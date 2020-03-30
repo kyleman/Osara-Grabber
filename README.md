@@ -1,11 +1,11 @@
 # Osara-Grabber
-An automatic installer for the Osara Reaper scripts on MacOS
+An automatic installer for the [Osara Reaper scripts](https://github.com/jcsteh/osara) on MacOS
 
 # Downloading
 
 ## Release Builds
 Current version v 1.0 03/30/2020.
-[Download the Osara Grabber here]().
+[Download the Osara Grabber here](https://github.com/kyleman/Osara-Grabber/releases/latest).
 
 ## Preleased Builds
 To get tho code as it stands currently.
@@ -22,12 +22,14 @@ If you cloned the repo, change directories to the Osara Grabber directory and ru
 
 # Current limitations
 * This does not install the keymap.
-#Does not let you install anywhere other than the default reaper UserPlugins folder for now.
+*Does not let you install anywhere other than the default reaper UserPlugins folder for now.
 * I have personally only tested this with MacOS 10.15.4 Catalina. While it should work an other versions of MacOS, that is untested territory.
 
 # FAQ
 Q: Is there a Windows version?
+
 A: Not as of yet.
 
 Q: I want ABC or XYZ feature?
+
 A: Open an issue and lets chat.
