@@ -36,12 +36,12 @@ if sys.platform == "darwin":
  osara_kemap = Path(".data/OSARA.ReaperKeyMap")
  
  try:
-  dylib_install_path = Path(sys.argv[1])
+  dylib_install_path = Path(sys.argv[1]) + "UserPlugins"
  except IndexError:
   dylib_install_path = home / "Library/Application Support/reaper/UserPlugins/"
 
  try:
-  keymap_install_path = Path(sys.argv[1])
+  keymap_install_path = Path(sys.argv[1]) + "KeyMaps"
  except IndexError:
   keymap_install_path = home / "Library/Application Support/reaper/KeyMaps/"
 
@@ -72,9 +72,32 @@ if sys.platform == "darwin":
 elif sys.platform == "win32":
  osara_dll32 = Path("UserPlugins/reaper_osara32.dll")
  osara_dll64 = Path("UserPlugins\reaper_osara64.dll")
- keymap = "KeyMaps\reaper_osara64.dll"
+ osara_keymap = "KeyMaps\reaper_osara64.dll"
  
- # set up windows install paths
+ try:
+  dll_install_path = Path(sys.argv[1]) + "UserPlugins"
+ except IndexError:
+   dll_install_path = home /"AppData/Roaming/REAPER/UserPlugins/"
+
+ try:
+  keymap_install_path = Path(sys.argv[1] + "KeyMaps")
+ except IndexError:
+  keymap_install_path = home / "AppData/Roaming/REAPER/KeyMaps/"
+
+ exe = re.compile("osara_.*\.exe")
+ exe_name = exe.search(r).group()
+
+ print("downloading {0}".format(exe_name))
+ dl = re.compile("https://ci\..*/osara_.*\.exe")
+ full_url = dl.search(r).group()
+
+ response = urllib.request.urlopen(full_url)
+ with open(exe_name, 'b+w') as exe:
+  exe.write(response.read())
+
+ if os.path.exists(exe_name):
+  os.system(exe_name)
+
 else:
  print("Not supported OS!")
  sys.exit(0)
