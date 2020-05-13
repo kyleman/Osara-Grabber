@@ -4,7 +4,7 @@ import sys
 import re
 import urllib.request
 import requests
-import subprocess
+import subprocess as sp
 
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
  """yaynay will ask the user for there response to a question with a binary answer. Loops until true or false is matched.
@@ -67,7 +67,9 @@ if sys.platform == "darwin":
 
  print("ejecting {0}".format(dmg_url))
  os.system("hdiutil detach osara > /dev/null")
- os.system("rm -f {0}".format(dmg_url))
+
+ print("deleting {0}".format(dmg_url))
+ os.remove(dmg_url)
 
 elif sys.platform == "win32":
  osara_dll32 = Path("UserPlugins/reaper_osara32.dll")
@@ -96,7 +98,12 @@ elif sys.platform == "win32":
   exe.write(response.read())
 
  if os.path.exists(exe_name):
-  os.system(exe_name)
+  try:
+   sp.check_output([exe_name])
+  except sp.CalledProcessError as cpe:
+   print("Installer failed to run")
+  print("deleting {0}".format(exe_name))
+  os.remove(exe_name)
 
 else:
  print("Not supported OS!")
