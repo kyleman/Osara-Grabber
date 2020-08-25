@@ -10,7 +10,7 @@ Current version v 2.0 08/24/2020.
 ## Live code as it stands
 To get the code as it stands currently, run the following commands.
 Note: you must have git and a working python3 install for this to work. Setting these up are beyond the scope of the readme
-````
+```
 pip3 install requests
 git clone https://github.com/kyleman/Osara-Grabber.git
 cd Osara-Grabber
