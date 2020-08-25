@@ -8,13 +8,13 @@ Current version v 2.0 08/24/2020.
 [Download Osara Grabber here](https://github.com/kyleman/Osara-Grabber/releases/latest).
 
 ## Live code as it stands
-To get the code as it stands currently, run the folling commands.
-Note: you must have git and a working python3 install for this to work. Seting these up are beyond the scope of the readme
+To get the code as it stands currently, run the following commands.
+Note: you must have git and a working python3 install for this to work. Setting these up are beyond the scope of the readme
 ````
 pip3 install requests
 git clone https://github.com/kyleman/Osara-Grabber.git
 cd Osara-Grabber
-python3 Osara_GRabber.py
+python3 Osara_Grabber.py
 ```
 
 # Using Osara Grabber
@@ -36,7 +36,7 @@ note: it is good practice to always wrap your paths in quotes.
 ## v2.0
 * Osara Grabber is all knew and supports Windows and MacOS
 * Update the readme to reflect the new use of python and its cross-platform nature
-* port older bash shell script topython for MacOS
+* port older bash shell script to python for MacOS
 * implement Windows support
 
 ## v1.2
@@ -55,10 +55,11 @@ note: it is good practice to always wrap your paths in quotes.
 * On MacOS you con't specify a portible install of reaper unless you run Osara_GRabber from the commandline.
 
 # FAQ
-Q: Is there a Windows version?
-
+Q: What operating systems are supported?
 A: As of v2.0 08/13/2020 both MacOS and windows are supported.
 
-Q: I want ABC or XYZ feature?
+Q: Will this auto update Osara?
+A: No. when a new version of Osara get released you still must manually run Osara Grabber. Osara Grabber is just to autimate the install process.
 
+Q: I want ABC or XYZ feature?
 A: Open an issue and lets chat.
