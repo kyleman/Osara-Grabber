@@ -1,28 +1,42 @@
 # Osara-Grabber
-An automatic installer for the [Osara Reaper scripts](https://github.com/jcsteh/osara) on MacOS
+An automatic installer for the [Osara Reaper scripts](https://github.com/jcsteh/osara).
 
 # Downloading
 
-## Release Builds
-Current version v 1.1 03/30/2020.
-[Download the Osara Grabber here](https://github.com/kyleman/Osara-Grabber/releases/latest).
+## Standard Binary Releases
+Current version v 2.0 08/24/2020.
+[Download Osara Grabber here](https://github.com/kyleman/Osara-Grabber/releases/latest).
 
-## Prerelease Builds
-To get the code as it stands currently.
-Note: you must have git installed for this to work.
-`git clone https://github.com/kyleman/Osara-Grabber.git`
+## Live code as it stands
+To get the code as it stands currently, run the folling commands.
+Note: you must have git and a working python3 install for this to work. Seting these up are beyond the scope of the readme
+````
+pip3 install requests
+git clone https://github.com/kyleman/Osara-Grabber.git
+cd Osara-Grabber
+python3 Osara_GRabber.py
+```
 
 # Using Osara Grabber
 
-## in finder with the GUI
-After downloading, Unzip the zip file. Run Osara_Grabber.command. If MacOS warns you about not being able to run it, try running it by pressing capslock + shift + control + m. Then click on open in the menu that should pop up.
+## in the MacOS Finder 
+Unzip Osara_Grabber.zip and run Osara_Grabber.app.
 
-## from terminal
-If you cloned the repo, change directories to the Osara Grabber directory and run `./Osara_Grabber.command`.
-By default if you don't specify a directory as the first argument, the Osara dylib and keymap files will be copied to your reaper'- resource path into UserPlugins and KeyMaps folders respectively. If you do provide a path like ""/Volumes/MyThumbDrive/ReaperPortable", the dylib and keymap file will be placed there instead.
+## in Windows file Explorer
+Unzip Osara_Grabber.zip and run Osara_Grabber.exe.
+
+## from commandline
+If you cloned the repo, change directories to the Osara Grabber directory and run `python3 Osara_Grabber.py`
+On MacOS by default if you don't specify a directory as the first argument, the Osara dylib and keymap files will be copied to your reaper'- resource path into UserPlugins and KeyMaps folders respectively. If you do provide a path like ""/Volumes/MyThumbDrive/ReaperPortable", the dylib and keymap file will be placed there instead.
+On Windows this is handled by the installer.
 note: it is good practice to always wrap your paths in quotes.
 
 # Changes
+## v2.0
+* Osara Grabber is all knew and supports Windows and MacOS
+* Update the readme to reflect the new use of python and its cross-platform nature
+* port older bash shell script topython for MacOS
+* implement Windows support
 
 ## v1.2
 * Added this change-log.
@@ -37,12 +51,12 @@ note: it is good practice to always wrap your paths in quotes.
 * First working release. See above for details.
 
 # Current limitations
-* I have personally only tested this with MacOS 10.15.4 Catalina. While it should work an other versions of MacOS, that is untested territory.
+* On MacOS you con't specify a portible install of reaper unless you run Osara_GRabber from the commandline.
 
 # FAQ
 Q: Is there a Windows version?
 
-A: Not as of yet.
+A: As of v2.0 08/13/2020 both MacOS and windows are supported.
 
 Q: I want ABC or XYZ feature?
 
