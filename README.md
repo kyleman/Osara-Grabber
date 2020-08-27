@@ -33,7 +33,7 @@ Unzip Osara_Grabber_Windows.zip and run Osara_Grabber.exe. You then complete the
 ## v2.1
 * MacOS: fix a bug in paths when trying to specify a directory on the terminal
 * MacOS: fix variable error when copying the key-map
-# README: clean up the readme
+* README: clean up the readme
 
 ## v2.0
 * Osara Grabber is all knew and supports Windows and MacOS
