@@ -33,15 +33,15 @@ r = requests.get(base_url).text
 
 if sys.platform == "darwin":
  osara_dylib = Path(".data/reaper_osara.dylib")
- osara_kemap = Path(".data/OSARA.ReaperKeyMap")
+ osara_keymap = Path(".data/OSARA.ReaperKeyMap")
  
  try:
-  dylib_install_path = Path(sys.argv[1]) + "UserPlugins"
+  dylib_install_path = Path(sys.argv[1]) / "UserPlugins"
  except IndexError:
   dylib_install_path = home / "Library/Application Support/reaper/UserPlugins/"
 
  try:
-  keymap_install_path = Path(sys.argv[1]) + "KeyMaps"
+  keymap_install_path = Path(sys.argv[1]) / "KeyMaps"
  except IndexError:
   keymap_install_path = home / "Library/Application Support/reaper/KeyMaps/"
 
