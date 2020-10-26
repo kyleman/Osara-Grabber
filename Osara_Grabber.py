@@ -6,6 +6,11 @@ import urllib.request
 import requests
 import subprocess as sp
 
+base_url = "https://osara.reaperaccessibility.com/snapshots/"
+home = Path.home()
+
+osara_webpage = requests.get(base_url).text # str of the osara webpage
+
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
  """yaynay will ask the user for there response to a question with a binary answer. Loops until true or false is matched.
  returns a boolean based on the matched answer.
@@ -25,11 +30,21 @@ def yaynay(prompt: str, true = "y", false = "n") -> bool:
   elif answer == false:
    return False
 
-base_url = "https://osara.reaperaccessibility.com/snapshots/"
-home = Path.home()
+def getInstallerName(type: str) -> str:
+ print("Looking for file")
+ installer = re.compile("osara_.*\.{0}".format(type))
+ installer_name = installer.search(osara_webpage).group()
+ return installer_name
 
-print("Looking for file")
-r = requests.get(base_url).text
+def getFullURL(installer_name: str) -> str:
+ dl = re.compile("https://.*/{0}".format(installer_name))
+ full_url = dl.search(osara_webpage).group()
+ return full_url
+
+def downloadInstaller(url: str, file_name: str) -> None:
+ response = urllib.request.urlopen(url)
+ with open(file_name, 'b+w') as file:
+  file.write(response.read())
 
 if sys.platform == "darwin":
  osara_dylib = Path(".data/reaper_osara.dylib")
@@ -45,18 +60,16 @@ if sys.platform == "darwin":
  except IndexError:
   keymap_install_path = home / "Library/Application Support/reaper/KeyMaps/"
 
- dmg = re.compile("osara_.*\.dmg")
- dmg_url = dmg.search(r).group()
+ dmg_name = getInstallerName("dmg") 
+ 
+ print("Downloading: {0}".format(dmg_name))
 
- print("downloading {0}".format(dmg_url))
- full_url = base_url + dmg_url
+ full_url = getFullURL(dmg_name)
 
- response = urllib.request.urlopen(full_url)
- with open(dmg_url, 'b+w') as dmg:
-  dmg.write(response.read())
+ downloadInstaller(full_url, dmg_name)
 
- if os.path.exists(dmg_url):
-  os.system("hdiutil attach -mountpoint ./osara ./" + dmg_url + " > /dev/null")
+ if os.path.exists(dmg_name):
+  os.system("hdiutil attach -mountpoint ./osara ./" + dmg_name + " > /dev/null")
 
  print("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
  os.system("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
@@ -65,11 +78,14 @@ if sys.platform == "darwin":
   print("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
   os.system("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
 
- print("ejecting {0}".format(dmg_url))
- os.system("hdiutil detach osara > /dev/null")
+  print("ejecting {0}".format(dmg_name))
+  os.system("hdiutil detach osara > /dev/null")
 
- print("deleting {0}".format(dmg_url))
- os.remove(dmg_url)
+  print("deleting {0}".format(dmg_name))
+  os.remove(dmg_name)
+
+ else:
+    Print("{0} can't be found.".format(dmg_name))
 
 elif sys.platform == "win32":
  osara_dll32 = Path("UserPlugins/reaper_osara32.dll")
@@ -86,16 +102,13 @@ elif sys.platform == "win32":
  except IndexError:
   keymap_install_path = home / "AppData/Roaming/REAPER/KeyMaps/"
 
- exe = re.compile("osara_.*\.exe")
- exe_name = exe.search(r).group()
+ exe_name = getInstallerName("exe")
 
- print("downloading {0}".format(exe_name))
- dl = re.compile("https://ci\..*/osara_.*\.exe")
- full_url = dl.search(r).group()
+ print("Downloading: {0}".format(exe_name))
 
- response = urllib.request.urlopen(full_url)
- with open(exe_name, 'b+w') as exe:
-  exe.write(response.read())
+ full_url = getFullURL(exe_name)
+
+ downloadInstaller(full_url, exe_name)
 
  if os.path.exists(exe_name):
   try:
@@ -104,8 +117,10 @@ elif sys.platform == "win32":
    print("Installer failed to run")
   print("deleting {0}".format(exe_name))
   os.remove(exe_name)
+ else:
+  print("{0} can't be found.".format(exe_name))
 
 else:
- print("Not supported OS!")
+ print("Not supported OS!\nPlease run this on a supported version of MacOS or Windows.")
  sys.exit(0)
 
