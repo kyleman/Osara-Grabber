@@ -71,12 +71,12 @@ if sys.platform == "darwin":
  if os.path.exists(dmg_name):
   os.system("hdiutil attach -mountpoint ./osara ./" + dmg_name + " > /dev/null")
 
- print("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
- os.system("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
+  print("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
+  os.system("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
 
- if yaynay("Do you want to install the keymap? If this is your first install of Osara, you should say yes: "):
-  print("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
-  os.system("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
+  if yaynay("Do you want to install the keymap? If this is your first install of Osara, you should say yes: "):
+   print("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
+   os.system("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
 
   print("ejecting {0}".format(dmg_name))
   os.system("hdiutil detach osara > /dev/null")
@@ -85,7 +85,7 @@ if sys.platform == "darwin":
   os.remove(dmg_name)
 
  else:
-    Print("{0} can't be found.".format(dmg_name))
+  print("{0} can't be found.".format(dmg_name))
 
 elif sys.platform == "win32":
  osara_dll32 = Path("UserPlugins/reaper_osara32.dll")
