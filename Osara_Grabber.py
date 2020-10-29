@@ -11,11 +11,11 @@ import argparse
 base_url = "https://osara.reaperaccessibility.com/snapshots/"
 home = Path.home()
 osara_webpage = requests.get(base_url).text # str of the osara webpage
-version_number = 3.0 #current version of osara grabber
+version_number = 3.0 # current version of osara grabber
 
 parser = argparse.ArgumentParser(description="Osara Grabber: an automatic installer for the osara reaper scripts.")
 parser.add_argument("-v", "--version", action='version', version="{0}".format(version_number))
-parser.add_argument("-k", "--keep", action="store_true", help="Doesn't delete the download installer after installing")
+parser.add_argument("-k", "--keep", action="store_true", help="Doesn't delete the downloaded installer after installing")
 args = parser.parse_args()
 
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
@@ -72,7 +72,7 @@ if sys.platform == "darwin":
  print("Downloading: {0}".format(dmg_name))
 
  full_url = getFullURL(dmg_name)
-
+ 
  downloadInstaller(full_url, dmg_name)
 
  if os.path.exists(dmg_name):
@@ -88,8 +88,11 @@ if sys.platform == "darwin":
   print("ejecting {0}".format(dmg_name))
   os.system("hdiutil detach osara > /dev/null")
 
-  print("deleting {0}".format(dmg_name))
-  os.remove(dmg_name)
+  if args.keep:
+   print("keeping {0}".format(dmg_name))
+  else:
+   print("deleting {0}. pass -k to keep".format(dmg_name))
+   os.remove(dmg_name)
 
  else:
   print("{0} can't be found.".format(dmg_name))
@@ -122,8 +125,12 @@ elif sys.platform == "win32":
    sp.check_output([exe_name])
   except sp.CalledProcessError as cpe:
    print("Installer failed to run")
-  print("deleting {0}".format(exe_name))
-  os.remove(exe_name)
+
+  if args.keep:
+   print("keeping {0}".format(exe_name))
+  else:
+   print("deleting {0}".format(exe_name))
+   os.remove(exe_name)
  else:
   print("{0} can't be found.".format(exe_name))
 
