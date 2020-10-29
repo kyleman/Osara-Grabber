@@ -15,6 +15,7 @@ version_number = 3.0 #current version of osara grabber
 
 parser = argparse.ArgumentParser(description="Osara Grabber: an automatic installer for the osara reaper scripts.")
 parser.add_argument("-v", "--version", action='version', version="{0}".format(version_number))
+parser.add_argument("-k", "--keep", action="store_true", help="Doesn't delete the download installer after installing")
 args = parser.parse_args()
 
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
