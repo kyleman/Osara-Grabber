@@ -97,20 +97,6 @@ if sys.platform == "darwin":
   print("{0} can't be found.".format(dmg_name))
 
 elif sys.platform == "win32":
- osara_dll32 = Path("UserPlugins/reaper_osara32.dll")
- osara_dll64 = Path("UserPlugins\reaper_osara64.dll")
- osara_keymap = "KeyMaps\reaper_osara64.dll"
- 
- try:
-  dll_install_path = Path(sys.argv[1]) + "UserPlugins"
- except IndexError:
-   dll_install_path = home /"AppData/Roaming/REAPER/UserPlugins/"
-
- try:
-  keymap_install_path = Path(sys.argv[1] + "KeyMaps")
- except IndexError:
-  keymap_install_path = home / "AppData/Roaming/REAPER/KeyMaps/"
-
  exe_name = getInstallerName("exe")
 
  if os.path.exists(exe_name): 
