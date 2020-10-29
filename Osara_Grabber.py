@@ -10,6 +10,7 @@ import subprocess as sp
 base_url = "https://osara.reaperaccessibility.com/snapshots/"
 home = Path.home()
 osara_webpage = requests.get(base_url).text # str of the osara webpage
+version = 3.0 #current version of osara grabber
 
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
  """yaynay will ask the user for there response to a question with a binary answer. Loops until true or false is matched.
