@@ -16,6 +16,7 @@ version_number = 3.0 # current version of osara grabber
 parser = argparse.ArgumentParser(description="Osara Grabber: an automatic installer for the osara reaper scripts.")
 parser.add_argument("-v", "--version", action='version', version="{0}".format(version_number))
 parser.add_argument("-k", "--keep", action="store_true", help="Doesn't delete the downloaded installer after installing")
+parser.add_argument("-p", "--portable-path", type = str, default = None, help = "path to your portable copy of reaper")
 args = parser.parse_args()
 
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
@@ -56,15 +57,12 @@ def downloadInstaller(url: str, file_name: str) -> None:
 if sys.platform == "darwin":
  osara_dylib = Path(".data/reaper_osara.dylib")
  osara_keymap = Path(".data/OSARA.ReaperKeyMap")
- 
- try:
-  dylib_install_path = Path(sys.argv[1]) / "UserPlugins"
- except IndexError:
-  dylib_install_path = home / "Library/Application Support/reaper/UserPlugins/"
 
- try:
-  keymap_install_path = Path(sys.argv[1]) / "KeyMaps"
- except IndexError:
+ if  args.portable_path != None:
+  dylib_install_path = Path(args.portable_path) / "UserPlugins"
+  keymap_install_path = Path(args.portable_path) / "KeyMaps"
+ else:
+  dylib_install_path = home / "Library/Application Support/reaper/UserPlugins/"
   keymap_install_path = home / "Library/Application Support/reaper/KeyMaps/"
 
  dmg_name = getInstallerName("dmg") 
