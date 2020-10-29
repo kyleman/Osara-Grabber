@@ -21,7 +21,7 @@ python3 Osara_Grabber.py
 
 ## in MacOS Finder 
 Unzip Osara_Grabber_MacOS.zip and run Osara_Grabber.
-If MacOS prevents you from running the file, control click the file and press open in the menu. For VoiceOver users, control clicking is the same as VoiceOver + shift + control + m. In this case VoiceOver has to be the capslock key.
+If MacOS prevents you from running the file, control click the file and press open in the menu. For VoiceOver users, control clicking is the same as VoiceOver + shift + m.
 
 ## in Windows file explorer
 Unzip Osara_Grabber_Windows.zip and run Osara_Grabber.exe. You then complete the install process in the Osara installer.
