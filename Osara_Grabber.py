@@ -6,9 +6,9 @@ import urllib.request
 import requests
 import subprocess as sp
 
+#constants
 base_url = "https://osara.reaperaccessibility.com/snapshots/"
 home = Path.home()
-
 osara_webpage = requests.get(base_url).text # str of the osara webpage
 
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
