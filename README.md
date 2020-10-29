@@ -23,12 +23,26 @@ python3 Osara_Grabber.py
 Unzip Osara_Grabber_MacOS.zip and run Osara_Grabber.
 If MacOS prevents you from running the file, control click the file and press open in the menu. For VoiceOver users, control clicking is the same as VoiceOver + shift + control + m. In this case VoiceOver has to be the capslock key.
 
-## MacOS Terminal
-On MacOS by default if you don't specify a directory as the first argument, the Osara dylib and key-map files will be copied to your reaper'- resource path into UserPlugins and KeyMaps folders respectively. If you do provide a path like "/Volumes/MyThumbDrive/ReaperPortable", the dylib and key-map file will be placed there instead.
-
-## in Windows file Explorer
+## in Windows file explorer
 Unzip Osara_Grabber_Windows.zip and run Osara_Grabber.exe. You then complete the install process in the Osara installer.
 
+## on the commandline
+The commandline arguments for Osara grabber are as follows:
+usage: Osara_Grabber.py [-h] [-v] [-k] [-p PORTABLE_PATH]
+
+Osara Grabber: an automatic installer for the osara reaper scripts.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  -k, --keep            Doesn't delete the downloaded installer after                        installing
+  -p PORTABLE_PATH, --portable-path PORTABLE_PATH                        path to your portable copy of reaper
+
+If you don't specify a directory as one of the arguments with the -p | --portable-path argument, the Osara dylib and keymap files will be copied to your reaper'- resource path into UserPlugins and KeyMaps folders respectively. If you do:
+` $ ./Osara_Grabber -p "/Volumes/MyThumbDrive/ReaperPortable"
+ the dylib and key-map file will be placed there instead. This is only supported on the MacOS version. This is handled for Windows in the Windows GUI installer.
+ Both platforms support the -k | --keep flag telling Osara Grabber to keep the downloaded installer instead of deleting it. If Osara Grabber sees there is an installer that matches the one already on the snapshots page, it will use the local copy rather than redownloading a second version. If you do want to keep old versions of the osara installer, make sure to always pass the -k flag or Osara Grabber will delete it. Make sure to move the installers to a different folder if you want to insure they never get accedenttally deleted.
+ 
 # Changes
 ## v2.2
 * Bug fixes and updates to support new appveyor links for the mac download. Hopefully this will be more reliable and less prone to breakage.
