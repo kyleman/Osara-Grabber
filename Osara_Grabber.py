@@ -68,14 +68,15 @@ if sys.platform == "darwin":
   keymap_install_path = home / "Library/Application Support/reaper/KeyMaps/"
 
  dmg_name = getInstallerName("dmg") 
- 
- print("Downloading: {0}".format(dmg_name))
 
- full_url = getFullURL(dmg_name)
- 
- downloadInstaller(full_url, dmg_name)
+ if os.path.exists(dmg_name): 
+  print("using locally cached: {0}".format(dmg_name))
+ else:
+  print("Downloading: {0}".format(dmg_name))
+  full_url = getFullURL(dmg_name)
+  downloadInstaller(full_url, dmg_name)
 
- if os.path.exists(dmg_name):
+ if os.path.exists(dmg_name): # last sanity check. This should have been downeded or used the local copy.
   os.system("hdiutil attach -mountpoint ./osara ./" + dmg_name + " > /dev/null")
 
   print("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
@@ -114,11 +115,12 @@ elif sys.platform == "win32":
 
  exe_name = getInstallerName("exe")
 
- print("Downloading: {0}".format(exe_name))
-
- full_url = getFullURL(exe_name)
-
- downloadInstaller(full_url, exe_name)
+ if os.path.exists(exe_name): 
+  print("using locally cached: {0}".format(exe_name))
+ else:
+  print("Downloading: {0}".format(exe_name))
+  full_url = getFullURL(exe_name)
+  downloadInstaller(full_url, exe_name)
 
  if os.path.exists(exe_name):
   try:
