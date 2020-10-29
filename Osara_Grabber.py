@@ -5,12 +5,17 @@ import re
 import urllib.request
 import requests
 import subprocess as sp
+import argparse
 
 #constants
 base_url = "https://osara.reaperaccessibility.com/snapshots/"
 home = Path.home()
 osara_webpage = requests.get(base_url).text # str of the osara webpage
 version_number = 3.0 #current version of osara grabber
+
+parser = argparse.ArgumentParser(description="Osara Grabber: an automatic installer for the osara reaper scripts.")
+parser.add_argument("-v", "--version", action='version', version="{0}".format(version_number))
+args = parser.parse_args()
 
 def yaynay(prompt: str, true = "y", false = "n") -> bool:
  """yaynay will ask the user for there response to a question with a binary answer. Loops until true or false is matched.
