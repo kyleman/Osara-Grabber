@@ -30,6 +30,9 @@ On MacOS by default if you don't specify a directory as the first argument, the 
 Unzip Osara_Grabber_Windows.zip and run Osara_Grabber.exe. You then complete the install process in the Osara installer.
 
 # Changes
+## v2.2
+* Bug fixes and updates to support new appveyor links for the mac download. Hopefully this will be more reliable and less prone to breakage.
+
 ## v2.1
 * MacOS: fix a bug in paths when trying to specify a directory on the terminal
 * MacOS: fix variable error when copying the key-map
