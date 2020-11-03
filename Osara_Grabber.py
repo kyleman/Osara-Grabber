@@ -59,11 +59,9 @@ if sys.platform == "darwin":
  osara_keymap = Path(".data/OSARA.ReaperKeyMap")
 
  if  args.portable_path != None:
-  dylib_install_path = Path(args.portable_path) / "UserPlugins"
-  keymap_install_path = Path(args.portable_path) / "KeyMaps"
+  install_path = Path(args.portable_path)
  else:
-  dylib_install_path = home / "Library/Application Support/reaper/UserPlugins/"
-  keymap_install_path = home / "Library/Application Support/reaper/KeyMaps/"
+  install_path = home / "Library/Application Support/reaper"
 
  dmg_name = getInstallerName("dmg") 
 
@@ -77,12 +75,12 @@ if sys.platform == "darwin":
  if os.path.exists(dmg_name): # last sanity check. This should have been downeded or used the local copy.
   os.system("hdiutil attach -mountpoint ./osara ./" + dmg_name + " > /dev/null")
 
-  print("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
-  os.system("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
+  print("cp osara/{0} '{1}/UserPlugins'".format(osara_dylib, install_path))
+  os.system("cp osara/{0} '{1}/UserPlugins'".format(osara_dylib, install_path))
 
   if yaynay("Do you want to install the keymap? If this is your first install of Osara, you should say yes: "):
-   print("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
-   os.system("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
+   print("cp osara/{0} '{1}/KeyMaps'".format(osara_keymap, install_path))
+   os.system("cp osara/{0} '{1}/Keymaps'".format(osara_keymap, install_path))
 
   print("ejecting {0}".format(dmg_name))
   os.system("hdiutil detach osara > /dev/null")
