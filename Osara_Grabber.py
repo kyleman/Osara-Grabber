@@ -66,12 +66,13 @@ if sys.platform == "darwin":
  if os.path.exists(dmg_name):
   os.system("hdiutil attach -mountpoint ./osara ./" + dmg_name + " > /dev/null")
 
-  print("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
-  os.system("cp osara/{0} '{1}'".format(osara_dylib, dylib_install_path))
+  print("cp osara/{0} '{1}/UserPlugins'".format(osara_dylib, install_path))
+  os.system("cp osara/{0} '{1}/UserPlugins'".format(osara_dylib, install_path))
 
   if yaynay("Do you want to install the keymap? If this is your first install of Osara, you should say yes: "):
-   print("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
-   os.system("cp osara/{0} '{1}'".format(osara_keymap, keymap_install_path))
+   print("cp osara/{0} '{1}/KeyMaps'".format(osara_keymap, install_path))
+   os.system("cp osara/{0} '{1}/KeyMaps'".format(osara_keymap, install_path))
+   os.system("cp osara/{0} '{1}/reaper-kb.ini'".format(osara_keymap, install_path))
 
   print("ejecting {0}".format(dmg_name))
   os.system("hdiutil detach osara > /dev/null")
