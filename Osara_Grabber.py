@@ -51,14 +51,9 @@ if sys.platform == "darwin":
  osara_keymap = Path(".data/OSARA.ReaperKeyMap")
  
  try:
-  dylib_install_path = Path(sys.argv[1]) / "UserPlugins"
+  install_path = Path(sys.argv[1])
  except IndexError:
-  dylib_install_path = home / "Library/Application Support/reaper/UserPlugins/"
-
- try:
-  keymap_install_path = Path(sys.argv[1]) / "KeyMaps"
- except IndexError:
-  keymap_install_path = home / "Library/Application Support/reaper/KeyMaps/"
+  install_path = home / "Library/Application Support/reaper/"
 
  dmg_name = getInstallerName("dmg") 
  
